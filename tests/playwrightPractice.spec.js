@@ -1,25 +1,27 @@
 import { test } from '@playwright/test';
 
-test('Youtube Searc', async ({ page }) => {
+test.use({ storageState: 'state.json' }); // Oturum durumunu yükler
+
+test('Youtube Search', async ({ page }) => {
    await page.goto("https://www.youtube.com/");
-  // Your test steps go here
 
-   
-  let searchBox = page.locator("//input[@id='search']");
+   await page.locator("//div[contains(@class, 'yt-spec-button-shape-next__button-text-content')]//span[text()='Reject all']").click();
 
-  await searchBox.click();
+   let searchBox = page.locator("//input[@id='search']");
 
-  await searchBox.fill('Cydeo');
-
+   await searchBox.click();
  
-  await searchBox.press('Enter');
-
+   await searchBox.fill('Cydeo');
+ 
   
-  let firstResult = page.locator("(//a[@id='video-title'])[1]");
-
-  await firstResult.click();
-
-  //await page.waitForTimeout(3000);
-
+   await searchBox.press('Enter');
+ 
+   
+   let firstResult = page.locator("(//a[@id='video-title'])[1]");
+ 
+   await firstResult.click();
+ 
+   //await page.waitForTimeout(3000);
+  
 
 });
