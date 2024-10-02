@@ -1,7 +1,5 @@
 import { test } from '@playwright/test';
 
-test.use({ storageState: 'state.json' }); // Oturum durumunu yükler
-
 test('Youtube Search', async ({ page }) => {
    await page.goto("https://www.youtube.com/");
 
